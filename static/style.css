@@ -1,0 +1,83 @@
+body{
+    background-color:white;
+    color:black;
+    font-family:Arial, sans-serif;
+}
+.navbar{
+    background-color:white;
+    border-radius:12px;
+    margin-top:1px;
+    padding:10px 20px;
+}
+.navbar-brand img{
+    height: 4rem;
+    width: 4rem;
+}
+
+.form-select{
+    background-color:whitesmoke;
+    border-radius: 5rem;
+    color:black;
+    min-width:250px;
+}
+.form-select:focus{
+    border-color:whitesmoke;
+    box-shadow:none;
+}
+
+.btn:hover{
+    background-color: whitesmoke;
+}
+.btn-custom{
+    background-color:whitesmoke;
+    border-radius: 50%;
+}
+.btn-view{
+    color: black;
+    background-color:whitesmoke;
+    border-radius: 5rem;
+}
+
+
+
+.section-title{
+    margin-top:40px;
+    margin-bottom:20px;
+    font-weight:bold;
+    color:black;
+}
+.section-image img{
+    width:100%;
+    border-radius:20px;
+    height:350px;
+    object-fit:cover;
+}
+
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+.product-card{
+    background-color:white;
+    border: 1px solid black;
+    border-radius:15px;
+    overflow:hidden;
+    height:100%;
+}
+.product-img img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.badge-custom{
+    background:black;
+    color:black;
+    padding:8px 16px;
+    border-radius:30px;
+    display:inline-block;
+    margin-bottom:20px;
+    font-size:0.9rem;
+}
