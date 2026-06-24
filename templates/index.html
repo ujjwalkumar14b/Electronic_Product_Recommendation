@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Electronic Product Recommendation System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<div class="container py-4">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-white" href="/">Electronic Recommendation System</a>
+
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex gap-3 ms-auto" method="POST" action="/recommend">
+                    <select class="form-select" name="user" required>
+                        <option value="">Select User</option>
+                        {% for user in users %}
+                        <option value="{{ user }}"
+                        {% if user==selected_user %}selected{% endif %}>
+                            {{ user }}
+                        </option>
+                        {% endfor %}
+                    </select>
+
+                    <button class="btn btn-custom"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    {% if selected_user %}
+
+    <div class="recommendation-heading">Recommendations for <span class="highlight">User {{ selected_user }}</span></div>
+
+
+    <!-- Hybrid -->
+    <h3 class="section-title">Hybrid Recommendations</h3>
+    <div class="product-grid">
+        {% for item in hybrid_recommendations %}
+        <div class="card product-card">
+            <div class="product-img"><img src="https://placehold.co/300x300/000000/FFFFFF?text={{ item }}"></div>
+            <div class="card-body">
+                <h6>{{ item }}</h6>
+                <p class="mb-1 text-secondary">Average Rating : <span>{{ product_details[item]["Average Rating"] }}</span></p>
+                <p class="mb-3 text-secondary">Total Ratings : <span>{{ product_details[item]["Total Ratings"] }}</span></p>
+                <button class="btn btn-view w-100">View Product</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- SVD -->
+    <h3 class="section-title">Personalized Recommendations (SVD)</h3>
+    <div class="product-grid">
+        {% for item in svd_recommendations %}
+        <div class="card product-card">
+            <div class="product-img"><img src="https://placehold.co/300x300/000000/FFFFFF?text={{ item }}"></div>
+            <div class="card-body">
+                <h6>{{ item }}</h6>
+                <p class="mb-1 text-secondary">Average Rating : <span>{{ product_details[item]["Average Rating"] }}</span></p>
+                <p class="mb-3 text-secondary">Total Ratings : <span>{{ product_details[item]["Total Ratings"] }}</span></p>
+                <button class="btn btn-view w-100">View Product</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Popular -->
+    <h3 class="section-title">Trending Products</h3>
+    <div class="product-grid">
+        {% for item in popular_recommendations %}
+        <div class="card product-card">
+            <div class="product-img"><img src="https://placehold.co/300x300/000000/FFFFFF?text={{ item }}"></div>
+            <div class="card-body">
+                <h6>{{ item }}</h6>
+                <p class="mb-1 text-secondary">Average Rating : <span>{{ product_details[item]["Average Rating"] }}</span></p>
+                <p class="mb-3 text-secondary">Total Ratings : <span>{{ product_details[item]["Total Ratings"] }}</span></p>
+                <button class="btn btn-view w-100">View Product</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
